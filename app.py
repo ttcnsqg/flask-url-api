@@ -14,7 +14,7 @@ def extract_from_url():
     if not url:
         return jsonify({'error': 'Thiếu tham số url'}), 400
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=10, headers={'User-Agent': 'Mozilla/5.0'})
         soup = BeautifulSoup(response.text, 'html.parser')
         title = soup.title.string if soup.title else 'Không có tiêu đề'
         paragraphs = soup.find_all('p')
